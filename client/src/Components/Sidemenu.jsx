@@ -3,7 +3,7 @@ import Slider from "./Slider.jsx";
 
 const fetchModelsData = async () => {
    try {
-      const response = await fetch("https://chat-gemini-azure-psi.vercel.app/models")
+      const response = await fetch("https://chat-gemini-server.vercel.app/models")
       const data = await response.json()
       return data;
    } catch (error) {
@@ -15,7 +15,7 @@ const fetchModelsData = async () => {
 
 const fetchChangeModel = async (model) => {
    try {
-      const response = await fetch("https://chat-gemini-azure-psi.vercel.app/postModel", {
+      const response = await fetch("https://chat-gemini-server.vercel.app/postModel", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
