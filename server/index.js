@@ -9,14 +9,7 @@ dotenv.config();
 // Express server setup
 const app = express();
 app.use(bodyParser.json());
-
-// for vercel deployment
-app.use(cors(
-    {
-        origin: ["https://chat-gemini-server.vercel.app/"],
-        method: ["POST", "GET"],
-    }
-));
+app.use(cors());
 
 // Gemini API key setup
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
