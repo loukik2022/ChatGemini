@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 // for vercel deployment
 app.use(cors(
     {
-        origin: ["https://chat-gemini-azure-psi.vercel.app/"],
+        origin: ["https://chat-gemini-server.vercel.app/"],
         method: ["POST", "GET"],
     }
 ));
