@@ -9,6 +9,8 @@ dotenv.config();
 // Express server setup
 const app = express();
 app.use(bodyParser.json());
+
+// to avoid cors error
 app.use(cors({
     origin: 'https://chat-gemini-wine.vercel.app',
     methods: ['GET', 'POST'], 
