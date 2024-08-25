@@ -21,7 +21,7 @@ const fetchChangeModel = async (model) => {
             "Content-Type": "application/json",
          },
          body: JSON.stringify({
-            model,
+            model
          }),
       });
       const data = await response.json();
