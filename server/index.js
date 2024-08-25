@@ -25,9 +25,13 @@ app.get('/models', async (req, res) => {
 
         const response = await fetch(get_model_url);
         const data = await response.json();
-        const modelNames = data.models.map((item) => item.displayName);
 
-        res.send(modelNames);
+        // solve duplicate Gemini-1.0 model name from request by using unique name
+        const modelNames = data.models.map((item) => item.displayName);
+        const modelNameSet = new Set(modelNames);
+        const uniqueModelNames = [...modelNameSet];
+        
+        res.send(uniqueModelNames);
     } catch (error) {
         console.error("Error fetching models list:", error);
         res.status(500).send({ message: "Failed to get models list." }); 
