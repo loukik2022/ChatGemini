@@ -7,45 +7,44 @@
         }
     ],
     "routes": [
-      {
-        "src": "/models",
-        "methods": ["GET"],
-        "dest": "/models",
-        "cors": {
-          "origin": "*",
-          "methods": ["GET"],
-          "headers": ["Content-Type"]
+    {
+      "src": "/models",
+      "methods": ["GET"],
+      "dest": "/models"
+    },
+    {
+      "src": "/",
+      "methods": ["POST"],
+      "dest": "/"
+    },
+    {
+      "src": "/postModel",
+      "methods": ["POST"],
+      "dest": "/postModel"
+    },
+    {
+      "src": "/postSlider",
+      "methods": ["POST"],
+      "dest": "/postSlider"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:path*",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET, POST, PUT, DELETE, OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type"
         }
-      },
-      {
-        "src": "/postModel",
-        "methods": ["POST"],
-        "dest": "/postModel",
-        "cors": {
-          "origin": "*",
-          "methods": ["POST"],
-          "headers": ["Content-Type"]
-        }
-      },
-      {
-        "src": "/",
-        "methods": ["POST"],
-        "dest": "/",
-        "cors": {
-          "origin": "*",
-          "methods": ["POST"],
-          "headers": ["Content-Type"]
-        }
-      },
-      {
-        "src": "/postSlider",
-        "methods": ["POST"],
-        "dest": "/postSlider",
-        "cors": {
-          "origin": "*",
-          "methods": ["POST"],
-          "headers": ["Content-Type"]
-        }
-      }
-    ]
+      ]
+    }
+  ]
   }
