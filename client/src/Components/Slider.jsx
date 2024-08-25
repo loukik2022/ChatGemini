@@ -14,7 +14,7 @@ const Slider = (props) => {
     const temperature = localStorage.getItem('temperature') || 0.5;
     const top_p = localStorage.getItem('top-p') || 0.9;
 
-    fetch('http://localhost:5174/postSlider', {
+    fetch('https://chat-gemini-server.vercel.app/postSlider', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ 
