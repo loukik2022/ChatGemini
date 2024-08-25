@@ -10,7 +10,7 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 app.use(cors({
-    origin: 'https://chat-gemini-server.vercel.app/',
+    origin: '*',
     methods: ['GET', 'POST'], 
     allowedHeaders: ['Content-Type'], 
   }));;
