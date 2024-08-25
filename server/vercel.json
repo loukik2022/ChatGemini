@@ -1,50 +1,25 @@
 {
-    "version": 2,
-    "builds": [
-        {
-            "src":"*.js",
-            "use":"@vercel/node"
-        }
-    ],
-    "routes": [
-    {
-      "src": "/models",
-      "methods": ["GET"],
-      "dest": "/models"
-    },
-    {
-      "src": "/",
-      "methods": ["POST"],
-      "dest": "/"
-    },
-    {
-      "src": "/postModel",
-      "methods": ["POST"],
-      "dest": "/postModel"
-    },
-    {
-      "src": "/postSlider",
-      "methods": ["POST"],
-      "dest": "/postSlider"
-    }
+  "version":2,
+  "builds":[
+      {
+          "src":"*.js",
+          "use":"@vercel/node"
+      }
+  ],
+  "routes":[
+      {
+          "src":"/(.*)",
+          "dest":"/"
+      }
   ],
   "headers": [
     {
-      "source": "/:path*",
+      "source": "/(.*)",
       "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        },
-        {
-          "key": "Access-Control-Allow-Methods",
-          "value": "GET, POST, PUT, DELETE, OPTIONS"
-        },
-        {
-          "key": "Access-Control-Allow-Headers",
-          "value": "Content-Type"
-        }
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
       ]
     }
   ]
-  }
+}
