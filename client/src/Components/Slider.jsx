@@ -6,22 +6,22 @@ const Slider = (props) => {
 
   const handleSliderChange = async (event) => {
     const newValue = +event.target.value;
-    const scaledValue = props.type === "temperature" || props.type === "top-p" ? newValue/event.target.max : newValue;
-    setSliderValue(scaledValue); 
-    
+    const scaledValue = props.type === "temperature" || props.type === "top-p" ? newValue / event.target.max : newValue;
+    setSliderValue(scaledValue);
+
     localStorage.setItem(props.type, scaledValue);
     const max_tokens = localStorage.getItem('max_tokens') || 100;
     const temperature = localStorage.getItem('temperature') || 0.5;
     const top_p = localStorage.getItem('top-p') || 0.9;
 
     fetch('https://chat-gemini-server.vercel.app/postSlider', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ 
-          max_tokens,
-          temperature,
-          top_p
-        })
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        max_tokens,
+        temperature,
+        top_p
+      })
     });
   };
 
