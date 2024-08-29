@@ -278,28 +278,34 @@ app.post("/", async (req, res) => {
     console.log("Current model parameters:", modelParams);
 
     try {
-        const client = await genAI.getGenerativeModel({
-            model: modelParams.model,
-            generationConfig: {
-                maxOutputTokens: modelParams.max_tokens,
-                temperature: modelParams.temperature,
-                topP: modelParams.top_p
-            },
-        });
-        console.log("Generated content with parameters:", {
-            model: modelParams.model,
-            maxOutputTokens: modelParams.max_tokens,
+        const model = genAI.getGenerativeModel({ model: modelParams.model });
+        
+        const result = await model.generateContent(userPrompt, {
             temperature: modelParams.temperature,
-            topP: modelParams.top_p
+            topP: modelParams.top_p,
+            maxOutputTokens: modelParams.max_tokens,
         });
-        const result = await client.generateContent(userPrompt);
-        const response = await result.response;
-        const text = response.text();
+
+        console.log("API Response:", JSON.stringify(result, null, 2));
+
+        if (!result.response) {
+            throw new Error("No response from the API");
+        }
+
+        const text = result.response.text();
+        if (!text) {
+            throw new Error("Empty response from the API");
+        }
+
         res.json({ gpt: text });
     } 
     catch (err) {
         console.error("Error generating content:", err);
-        res.status(500).json({ error: "An error occurred while processing your request", details: err.message });
+        res.status(500).json({ 
+            error: "An error occurred while processing your request", 
+            details: err.message,
+            modelParams: modelParams
+        });
     }
 });
 
