@@ -3,11 +3,15 @@ import Slider from "./Slider.jsx";
 
 const fetchModelsData = async () => {
    try {
-      const response = await fetch("https://chat-gemini-server.vercel.app/models")
+      const response = await fetch("https://chat-gemini-wine.vercel.app/models")
       const data = await response.json()
-      return data;
+
+      // get all `displayName` which are key of data dict
+      const modelDisplayName = Object.keys(data); 
+
+      return modelDisplayName;
    } catch (error) {
-      console.log("Model list response error")
+      console.log("Model fetch error")
       console.error(error);
       return null;
    }
@@ -15,19 +19,25 @@ const fetchModelsData = async () => {
 
 const fetchChangeModel = async (model) => {
    try {
-      const response = await fetch("https://chat-gemini-server.vercel.app/postModel", {
+      const modelResponse = await await fetch("https://chat-gemini-wine.vercel.app/models")
+      const modelData = await modelResponse.json()
+
+      // `name` corresponding to `displayName`
+      let modelName = modelData[model]
+
+      const response = await fetch("https://chat-gemini-wine.vercel.app/postModel", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
          },
          body: JSON.stringify({
-            model
+            modelName
          }),
       });
       const data = await response.json();
-      // console.log(data);
       return data;
    } catch (error) {
+      console.log("Model change error")
       console.error(error);
       return null;
    }

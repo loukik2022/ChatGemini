@@ -14,17 +14,26 @@ const Slider = (props) => {
     const temperature = localStorage.getItem('temperature') || 0.5;
     const top_p = localStorage.getItem('top-p') || 0.9;
 
-    fetch('https://chat-gemini-server.vercel.app/postSlider', {
-      method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json' 
-      },
-      body: JSON.stringify({
-        max_tokens,
-        temperature,
-        top_p
-      })
-    });
+    try {
+      const response = await fetch('https://chat-gemini-wine.vercel.app/postSlider', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          max_tokens,
+          temperature,
+          top_p
+        })
+      });
+      const data = await response.json();
+      return data;
+    }
+    catch (e) {
+      console.log("Slider error")
+      console.error(e);
+      return null;
+    }
   };
 
   const max = props.type === "max_tokens" ? 250 : "temperature" || props.type === "top-p" ? 1 : 100;

@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 
 const fetchSendPrompt = async (userPrompt) => {
    try {
-      const response = await fetch("https://chat-gemini-server.vercel.app/", {
+      const response = await fetch("https://chat-gemini-wine.vercel.app/", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
@@ -14,7 +14,9 @@ const fetchSendPrompt = async (userPrompt) => {
       // console.log(response)
       const data = await response.json();
       return data;
-   } catch (error) {
+   }
+   catch (error) {
+      console.log("Gemini text generation error")
       console.error(error);
       return null;
    }
