@@ -17,7 +17,6 @@ const Slider = (props) => {
     fetch('https://chat-gemini-server.vercel.app/postSlider', {
       method: 'POST',
       headers: { 
-        'Access-Control-Allow-Origin':  'https://chat-gemini-server.vercel.app/',
         'Content-Type': 'application/json' 
       },
       body: JSON.stringify({
