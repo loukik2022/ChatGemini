@@ -11,11 +11,12 @@ const app = express();
 app.use(bodyParser.json());
 
 // to avoid cors error
-app.use(cors({
-    origin: 'https://chat-gemini-wine.vercel.app',
-    methods: ['GET', 'POST'], 
-    allowedHeaders: ['Content-Type'], 
-  }));;
+app.use(cors());
+// app.use(cors({
+//     origin: 'https://chat-gemini-wine.vercel.app',
+//     methods: ['GET', 'POST'], 
+//     allowedHeaders: ['Content-Type'], 
+//   }));;
 
 // Gemini API key setup
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
