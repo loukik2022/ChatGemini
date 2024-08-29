@@ -11,12 +11,11 @@ const app = express();
 app.use(bodyParser.json());
 
 // to avoid cors error
-app.use(cors());
-// app.use(cors({
-//     origin: 'https://chat-gemini-wine.vercel.app',
-//     methods: ['GET', 'POST'], 
-//     allowedHeaders: ['Content-Type'], 
-//   }));;
+app.use(cors({
+    origin: 'https://chat-gemini-wine.vercel.app',
+    methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type'],
+}));;
 
 // Gemini API key setup
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
@@ -33,17 +32,17 @@ app.get('/models', async (req, res) => {
         const modelNames = data.models.map((item) => item.displayName);
         const modelNameSet = new Set(modelNames);
         const uniqueModelNames = [...modelNameSet];
-        
+
         res.send(uniqueModelNames);
     } catch (error) {
         console.error("Error fetching models list:", error);
-        res.status(500).send({ message: "Failed to get models list." }); 
+        res.status(500).send({ message: "Failed to get models list." });
     }
 });
 
 
 
-let model="gemini-1.5-flash", max_tokens = 50, temperature = 0.5, top_p = 0.9;
+let model = "gemini-1.5-flash", max_tokens = 50, temperature = 0.5, top_p = 0.9;
 
 app.post("/postModel", async (req, res) => {
     model = req.body.model;
@@ -65,7 +64,7 @@ app.post("/", async (req, res) => {
     // If userPrompt is present, make the OpenAI API call
     if (userPrompt) {
         try {
-            const client = await genAI.getGenerativeModel({ 
+            const client = await genAI.getGenerativeModel({
                 model: "gemini-1.5-flash",
                 generationConfig: {
                     maxOutputTokens: max_tokens,
