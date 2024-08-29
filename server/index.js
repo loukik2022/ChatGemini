@@ -11,14 +11,26 @@ const app = express();
 app.use(bodyParser.json());
 
 // to avoid cors error
-app.use(cors({
-    origin: 'https://chat-gemini-wine.vercel.app',
-    methods: ['GET', 'POST', 'OPTIONS'],           
-    allowedHeaders: ['Content-Type'],
-}));;
+// CORS configuration
+const corsOptions = {
+    origin: '*', // Allow all origins
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization']
+  };
+  
+  // Apply CORS middleware
+  app.use(cors(corsOptions));
+// app.use(cors({
+//     origin: 'https://chat-gemini-wine.vercel.app',
+//     methods: ['GET', 'POST', 'OPTIONS'],           
+//     allowedHeaders: ['Content-Type'],
+// }));;
 
-// Handle OPTIONS preflight request
-app.options('*', cors());
+// // Handle OPTIONS preflight request
+// app.options('*', cors());
 
 // Gemini API key setup
 const genAI = new GoogleGenerativeAI(process.env.API_KEY);
