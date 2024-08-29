@@ -15,7 +15,7 @@ const Slider = (props) => {
     const top_p = localStorage.getItem('top-p') || 0.9;
 
     try {
-      const response = await fetch('https://chat-gemini-wine.vercel.app/postSlider', {
+      const response = await fetch('https://chat-gemini-server.vercel.app/postSlider', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

@@ -3,7 +3,7 @@ import Slider from "./Slider.jsx";
 
 const fetchModelsData = async () => {
    try {
-      const response = await fetch("https://chat-gemini-wine.vercel.app/models")
+      const response = await fetch("https://chat-gemini-server.vercel.app/models")
       const data = await response.json()
 
       // get all `displayName` which are key of data dict
@@ -19,13 +19,13 @@ const fetchModelsData = async () => {
 
 const fetchChangeModel = async (model) => {
    try {
-      const modelResponse = await await fetch("https://chat-gemini-wine.vercel.app/models")
+      const modelResponse = await await fetch("https://chat-gemini-server.vercel.app/models")
       const modelData = await modelResponse.json()
 
       // `name` corresponding to `displayName`
       let modelName = modelData[model]
 
-      const response = await fetch("https://chat-gemini-wine.vercel.app/postModel", {
+      const response = await fetch("https://chat-gemini-server.vercel.app/postModel", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",

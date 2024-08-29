@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 
 const fetchSendPrompt = async (userPrompt) => {
    try {
-      const response = await fetch("https://chat-gemini-wine.vercel.app/", {
+      const response = await fetch("https://chat-gemini-server.vercel.app/", {
          method: "POST",
          headers: {
             "Content-Type": "application/json",
