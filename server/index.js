@@ -233,7 +233,7 @@ const genAI = new GoogleGenerativeAI(process.env.API_KEY);
 
 // Store model parameters
 let modelParams = {
-    model: "gemini-1.5-pro",
+    model: "gemini-1.5-flash",
     max_tokens: 50,
     temperature: 0.5,
     top_p: 0.9
@@ -278,26 +278,45 @@ app.post("/", async (req, res) => {
     console.log("Current model parameters:", modelParams);
 
     try {
-        const model = genAI.getGenerativeModel({ model: modelParams.model });
+        // const model = genAI.getGenerativeModel({ model: modelParams.model });
         
-        const result = await model.generateContent(userPrompt, {
-            temperature: modelParams.temperature,
-            topP: modelParams.top_p,
-            maxOutputTokens: modelParams.max_tokens,
+        // const result = await model.generateContent(userPrompt, {
+        //     temperature: modelParams.temperature,
+        //     topP: modelParams.top_p,
+        //     maxOutputTokens: modelParams.max_tokens,
+        // });
+
+        // console.log("API Response:", JSON.stringify(result, null, 2));
+
+        // if (!result.response) {
+        //     throw new Error("No response from the API");
+        // }
+
+        // const text = result.response.text();
+        // if (!text) {
+        //     throw new Error("Empty response from the API");
+        // }
+
+        // res.json({ gpt: text });
+
+
+
+        const client = await genAI.getGenerativeModel({
+            model: modelParams.model,
+            generationConfig: {
+                maxOutputTokens:  modelParams.max_tokens,
+                temperature:  modelParams.temperature,
+                topP:  modelParams.top_p,
+            },
         });
+        const result = await client.generateContent(userPrompt);
+        const response = await result.response;
+        const text = response.text();
+        console.log(text);
 
-        console.log("API Response:", JSON.stringify(result, null, 2));
-
-        if (!result.response) {
-            throw new Error("No response from the API");
-        }
-
-        const text = result.response.text();
-        if (!text) {
-            throw new Error("Empty response from the API");
-        }
-
-        res.json({ gpt: text });
+        res.send({
+            gpt: text
+        });
     } 
     catch (err) {
         console.error("Error generating content:", err);
