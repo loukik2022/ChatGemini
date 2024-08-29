@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 // CORS configuration 
 const corsOptions = {
-    origin: '*',
+    origin: 'https://chat-gemini-wine.vercel.app/',
     methods: ['GET', 'POST', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
