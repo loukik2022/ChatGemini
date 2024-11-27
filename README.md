@@ -11,18 +11,18 @@ Project Link: [ChatGemini](https://chat-gemini-wine.vercel.app/)
 - Responsive UI design 📱
 - Easy-to-use interface to chat with AI 👨‍💻
 
+## Usage 😃
+
+1. Select a model from the dropdown menu 📜
+2. Adjust parameters using the sliders 🧮
+3. Send messages to engage with the AI assistant 📲
+
 ## Technologies Used 🛠️
 
 - React.js
 - Express
 - Node.js
 - Gemini API
-
-## Usage 😃
-
-1. Select a model from the dropdown menu 📜
-2. Adjust parameters using the sliders 🧮
-3. Send messages to engage with the AI assistant 📲
 
 ## Project Structure 🏗️
 
