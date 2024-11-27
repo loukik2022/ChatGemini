@@ -2,7 +2,7 @@
 
 A powerful AI-powered chat application that brings human-like conversations to your fingertips. 💬
 
-Project Link: [ChatGemini](https://github.com/yourusername/chat-gemini)
+Project Link: [ChatGemini]([https://github.com/yourusername/chat-gemini](https://chat-gemini-wine.vercel.app/))
 
 ## Features 🎉
 
