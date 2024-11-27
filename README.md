@@ -13,11 +13,10 @@ Project Link: [ChatGemini](https://github.com/yourusername/chat-gemini)
 
 ## Technologies Used 🛠️
 
-```mermaid
-graph TD
-    A[React] --> B[Express]
-    A --> C[Google Generative AI API]
-```
+- React.js
+- Express
+- Node.js
+- Gemini API
 
 ## Usage 😃
 
