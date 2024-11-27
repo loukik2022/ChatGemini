@@ -8,7 +8,6 @@ Project Link: [ChatGemini](https://chat-gemini-wine.vercel.app/)
 
 - Real-time conversation with AI assistant 🕰️
 - Customizable parameters and wide range of AI models 🔧
-- Responsive UI design 📱
 - Easy-to-use interface to chat with AI 👨‍💻
 
 ## Usage 😃
